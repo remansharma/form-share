@@ -1,0 +1,15 @@
+[API] admin login
+
+[API] admin signup
+
+[API] create dynamic form (a link will be generated which the admin can share with public)
+
+[API] get list of forms created
+
+[API] get list of submitted applications on forms
+
+[FEATURE] when a client is using the application and open the form
+he can fetch the form using that uniqueID
+
+[FEATURE] once the user submits the form will be available for the admin
+later we will add login using google to submit the form
