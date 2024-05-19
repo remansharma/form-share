@@ -1,0 +1,12 @@
+## Nest CLI commands
+https://docs.nestjs.com/cli/usages
+
+## Linting Command (Fixes everything automatically)
+[https://stackoverflow.com/questions/40271230/how-to-run-eslint-fix-from-npm-script]
+npm run lint -- --fix
+
+## Libraries Installed
+npm install dotenv --save
+
+npm install --save @nestjs/config
+[Nest provides a @nestjs/config package out-of-the-box to help load our .env file.]
