@@ -1,0 +1,2 @@
+# how to setup mongoose 
+npm install @nestjs/mongoose mongoose
