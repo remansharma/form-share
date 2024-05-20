@@ -1,9 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
-// import { AuthGuard } from '@nestjs/passport';
-// import { PostsService } from './posts.service';
-// import { Post as PostEntity } from './post.entity';
-// import { PostDto } from './dto/post.dto';
-
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { FormsService } from './forms.service';
 
 @Controller('forms')
@@ -12,7 +7,11 @@ export class FormsController {
 
   @Post()
   async createForm(@Body() form: any): Promise<any> {
-    // get all posts in the db
     return await this.formsService.create(form);
+  }
+
+  @Get()
+  async getListOfForms(): Promise<any> {
+    return await this.formsService.findAll();
   }
 }
