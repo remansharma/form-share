@@ -6,8 +6,8 @@ import { Controller, Post, Body } from '@nestjs/common';
 
 import { FormsService } from './forms.service';
 
-@Controller('posts')
-export class PostsController {
+@Controller('forms')
+export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
   @Post()
