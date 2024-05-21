@@ -1,2 +1,16 @@
 # how to setup mongoose 
 npm install @nestjs/mongoose mongoose
+
+# how to generate controller
+nest generate controller <name>
+
+# how to install passport requirements
+npm install --save @nestjs/passport passport passport-local
+npm install --save-dev @types/passport-local
+npm install bcrypt --save
+npm install @nestjs/jwt passport-jwt
+npm install @types/passport-jwt --save-dev
+
+
+
+npm install class-validator class-transformer --save
