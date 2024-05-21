@@ -4,12 +4,18 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FormsModule } from './modules/forms/forms.module';
+import { UsersModule } from './modules/users/users.module';
+// import { AdminsModule } from './modules/admins/admins.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot('mongodb://localhost/nest'),
     FormsModule,
+    UsersModule,
+    // AdminsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
