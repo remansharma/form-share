@@ -28,12 +28,12 @@ export class AuthService {
     return result;
   }
 
-  async login(user) {
+  async login(user: any) {
     const token = await this.generateToken(user);
     return { user, token };
   }
 
-  async create(user) {
+  async create(user: any) {
     // hash the password
     const pass = await this.hashPassword(user.password);
 
@@ -42,13 +42,17 @@ export class AuthService {
 
     // tslint:disable-next-line: no-string-literal
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...result } = newUser['dataValues'];
+    // const { password, ...result } = newUser;
 
     // generate token
-    const token = await this.generateToken(result);
+    const token = await this.generateToken({
+      name: newUser.name,
+      "message": "hi somya",
+      id: newUser._id,
+    });
 
     // return the user and the token
-    return { user: result, token };
+    return { user: newUser, token };
   }
 
   async generateToken(user) {
