@@ -7,10 +7,14 @@ import { FormsModule } from './modules/forms/forms.module';
 import { UsersModule } from './modules/users/users.module';
 // import { AdminsModule } from './modules/admins/admins.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     MongooseModule.forRoot('mongodb://localhost/nest'),
     FormsModule,
     UsersModule,
@@ -18,6 +22,6 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtService],
 })
 export class AppModule {}
