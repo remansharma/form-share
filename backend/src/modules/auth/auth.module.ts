@@ -6,17 +6,22 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
+import dat
 
 @Module({
   imports: [
+    JwtModule.register({
+      secret: process.env.JWTKEY,
+      signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
+    }),
     UsersModule,
     PassportModule,
-    JwtModule.register({
-      secret: 'process.env.JWTKEY',
-      signOptions: { expiresIn: 100000 || process.env.TOKEN_EXPIRATION },
-    }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
 })
-export class AuthModule {}
+export class AuthModule {
+  onModuleInit() {
+    console.log('process.env.JWTKEY', process.env.JWTKEY);
+  }
+}

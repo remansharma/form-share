@@ -47,7 +47,6 @@ export class AuthService {
     // generate token
     const token = await this.generateToken({
       name: newUser.name,
-      "message": "hi somya",
       id: newUser._id,
     });
 
