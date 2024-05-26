@@ -6,7 +6,7 @@ async function bootstrap() {
   await dotenv.config();
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v1');
-  await app.listen(3000);
+  await app.listen(80);
 }
 
 bootstrap();

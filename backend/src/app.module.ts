@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FormsModule } from './modules/forms/forms.module';
 import { UsersModule } from './modules/users/users.module';
-// import { AdminsModule } from './modules/admins/admins.module';
+import { AdminsModule } from './modules/admins/admins.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtService } from '@nestjs/jwt';
 
@@ -18,7 +18,7 @@ import { JwtService } from '@nestjs/jwt';
     MongooseModule.forRoot('mongodb://localhost/nest'),
     FormsModule,
     UsersModule,
-    // AdminsModule,
+    AdminsModule,
     AuthModule,
   ],
   controllers: [AppController],

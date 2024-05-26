@@ -7,6 +7,9 @@ export class User extends Document {
   name: string;
 
   @Prop()
+  email: string;
+
+  @Prop()
   password: string;
 }
 
