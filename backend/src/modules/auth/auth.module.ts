@@ -6,13 +6,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
-import dat
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: process.env.JWTKEY,
-      signOptions: { expiresIn: process.env.TOKEN_EXPIRATION },
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWTKEY'),
+        signOptions: {
+          expiresIn: configService.get<string>('TOKEN_EXPIRATION'),
+        },
+      }),
+      inject: [ConfigService],
     }),
     UsersModule,
     PassportModule,
@@ -21,7 +28,11 @@ import dat
   controllers: [AuthController],
 })
 export class AuthModule {
-  onModuleInit() {
-    console.log('process.env.JWTKEY', process.env.JWTKEY);
+  constructor(private configService: ConfigService) {
+    // console.log('JWTKEY:', this.configService.get('JWTKEY'));
+    // console.log(
+    //   'TOKEN_EXPIRATION:',
+    //   this.configService.get('TOKEN_EXPIRATION'),
+    // );
   }
 }
