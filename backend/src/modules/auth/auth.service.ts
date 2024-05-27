@@ -14,7 +14,6 @@ export class AuthService {
 
   async validateUser(username: string, pass: string) {
     const user = await this.adminService.findOneByEmail(username);
-    console.log('RESULT USER', user);
     if (!user) {
       return null;
     }
@@ -32,8 +31,6 @@ export class AuthService {
   }
 
   async login(user: any) {
-    console.log('user', user);
-
     const token = await this.generateToken(user);
     return { user, token };
   }
@@ -60,11 +57,7 @@ export class AuthService {
   }
 
   async generateToken(user) {
-    console.log('user', user);
-
     const token = await this.jwtService.signAsync(user);
-    console.log('token', token);
-
     return token;
   }
 
