@@ -13,7 +13,6 @@ export class AdminsService {
   }
 
   async findOneByEmail(email: string): Promise<Admin> {
-    console.log('ADMIN EMAIL', email);
     return await this.adminModel
       .findOne<Admin>({
         email: email,
