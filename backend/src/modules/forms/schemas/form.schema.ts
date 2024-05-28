@@ -8,6 +8,9 @@ export class Form extends Document {
 
   @Prop()
   adminID: string;
+
+  @Prop()
+  forms: Array<any>;
 }
 
 export const FormSchema = SchemaFactory.createForClass(Form);
