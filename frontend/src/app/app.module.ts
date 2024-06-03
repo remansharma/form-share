@@ -16,6 +16,7 @@ import { RegisterComponent } from './pages/no-auth/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateFormComponent } from './pages/auth/create-form/create-form.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
+    CreateFormComponent,
   ],
   imports: [
     MatButtonModule,
