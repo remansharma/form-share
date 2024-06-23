@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { AdminsService } from '../admins/admins.service';
-
+import { HttpException, HttpStatus } from '@nestjs/common';
 @Injectable()
 export class AuthService {
   constructor(
@@ -38,6 +38,20 @@ export class AuthService {
   async create(user: any) {
     // hash the password
     const pass = await this.hashPassword(user.password);
+
+    // check if user already exists in the database
+    const existingUserDoc = await this.adminService.findOneByEmail(user.email);
+
+    if(existingUserDoc) {
+      throw new HttpException({
+        statusCode: HttpStatus.CONFLICT,
+        message: "This email address is already registered. Please use a different email or log in.",
+        error: "Conflict"
+      }, HttpStatus.CONFLICT);
+    }
+
+    
+
 
     // create the user
     const newUser = await this.adminService.create({ ...user, password: pass });
