@@ -5,13 +5,23 @@ import { FormsService } from './forms.service';
 export class FormsController {
   constructor(private readonly formsService: FormsService) {}
 
-  @Post()
+  @Post('/create')
   async createForm(@Body() form: any): Promise<any> {
     return await this.formsService.create(form);
   }
 
-  @Get()
+  @Post('/get-list-of-forms')
   async getListOfForms(): Promise<any> {
     return await this.formsService.findAll();
+  }
+
+  @Post('/delete')
+  async delete(@Body() body: object): Promise<any> {
+    return await this.formsService.delete(body['id']);
+  }
+
+  @Post('/update')
+  async update(@Body() body: object): Promise<any> {
+    return await this.formsService.update(body['id'], body['updatedName']);
   }
 }
