@@ -27,6 +27,17 @@ export class FormsService {
     return listOfForms;
   }
 
+  async getForm(id): Promise<any> {
+    
+    const doc = await this.formModel.findOne({"_id": id});
+    
+    return {
+     message: "Successfully fetched the form",
+     data: doc
+    }
+
+  }
+
   async delete(id): Promise<any> {
    let doc = await this.formModel.deleteOne({"_id": id})   
    return {
