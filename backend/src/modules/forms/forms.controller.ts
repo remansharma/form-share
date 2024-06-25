@@ -15,6 +15,11 @@ export class FormsController {
     return await this.formsService.findAll();
   }
 
+  @Post('/get-form')
+  async getForm(@Body() body: object): Promise<any> {
+    return await this.formsService.getForm(body['id']);
+  }
+
   @Post('/delete')
   async delete(@Body() body: object): Promise<any> {
     return await this.formsService.delete(body['id']);
