@@ -11,8 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'no-auth',
-    loadChildren: () => import('./pages/no-auth/no-auth.module').then(m => m.NoAuthModule),
-    // canActivate: [authGuard] // Use authGuard here
+    loadChildren: () => import('./pages/no-auth/no-auth.module').then(m => m.NoAuthModule)
   },
   { path: '', redirectTo: '/no-auth/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/no-auth/login' }, 
