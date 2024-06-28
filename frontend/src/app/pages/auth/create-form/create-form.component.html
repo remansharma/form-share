@@ -1,7 +1,32 @@
-<p>create-form works!</p>
-
 <div class="container">
-    <p>I'm the container</p>
-    <button>Add a text field</button>
+  <div class="form-container">
+    <h2>Create Your Form</h2>
+    
+    <label>Form name</label>
+    
+    <form [formGroup]="form">
+      <input type="text" formControlName="formName">
+      <br><br>
 
+      <div formArrayName="fields">
+        <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i" class="form-group">
+          <label [for]="'field' + i">{{ field.value.label }}</label>
+          
+          <ng-container [ngSwitch]="field.value.type">
+            <input *ngSwitchCase="'text'" [id]="'field' + i" formControlName="value" type="text">
+            <textarea *ngSwitchCase="'textarea'" [id]="'field' + i" formControlName="value"></textarea>
+            <div *ngSwitchCase="'radio'" [formGroupName]="i">
+              <div *ngFor="let option of field.value.options">
+                <input type="radio" [formControlName]="'value'" [value]="option.value"> {{ option.label }}
+              </div>
+            </div>
+          </ng-container>
+
+          <button type="button" (click)="removeField(i)">Remove</button>
+        </div>
+      </div>
+    </form>
+    <button type="button" (click)="addField()">Add Field</button>
+    <button (click)="createForm()">Create Form</button>
+  </div>
 </div>
