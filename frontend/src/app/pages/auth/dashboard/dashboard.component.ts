@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Navigation } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,21 @@ import { Navigation } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  createDynamicForm() {
-    console.log('Dynamic form creation');
+
+
+
+  constructor(private router: Router) {}
+
+  logout() {
+    localStorage.removeItem('admin_auth');
+    this.router.navigate(['/no-auth/login']);
+  }
+
+  openCreateFormPage() {
+    this.router.navigate(['/auth/create-form']);
+  }
+
+  openListOfFormPage() {
+    this.router.navigate(['/auth/list-of-forms']);
   }
 }
