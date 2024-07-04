@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NoAuthService } from '../services/no-auth/no-auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent {
 
   constructor(
     private noAuthService: NoAuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {  }
 
 
@@ -48,15 +50,31 @@ export class RegisterComponent {
     console.log(name, phone, email, password);
 
     this.noAuthService.registerAdmin(name, email, password).subscribe((res:any) => {
-      console.log(res);
+      
+      let message = res.message || `Successfully registed ${email}`;
+      this.snackBar.open(message, 'Close', {
+        duration: 2000
+      })
+
+      this.registerForm.reset();
+
     }, (error: any) => {
-      this.snackBar.open('Network Issue. Please Contact Admin.', 'Close', {
+
+      console.log(error.error.message);
+
+      let message = error.error.message || 'Network Issue. Please Contact Admin.';
+
+      this.snackBar.open(message, 'Close', {
         duration: 2000,
       });
       
       return;
     });
     
+  }
+
+  openLoginPage() {
+    this.router.navigate(['/no-auth/login']) ;
   }
 
 
