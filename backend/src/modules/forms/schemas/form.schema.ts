@@ -12,8 +12,8 @@ export class FormField {
   @Prop({ type: [Object] })
   options: { label: string, value: any }[];
 
-  @Prop()
-  value: any;
+  // @Prop()
+  // value: ;
 }
 
 const FormFieldSchema = SchemaFactory.createForClass(FormField);
