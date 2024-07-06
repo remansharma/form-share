@@ -1,0 +1,15 @@
+<!-- dialog.component.html -->
+<div class="dialog-container">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Enter the form name here</mat-label>
+      <input matInput placeholder="Enter the form name here" [(ngModel)]="formName">
+    </mat-form-field>
+  
+    <h2 class="updated-form-name">Updated Form Name: {{ formName }}</h2>
+  
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="update()">Update</button>
+      <button mat-raised-button mat-dialog-close color="primary">Close</button>
+    </div>
+  </div>
+  
