@@ -1,0 +1,30 @@
+/* dialog.component.css */
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .form-field {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  .updated-form-name {
+    margin: 20px 0;
+    color: #3f51b5;
+    font-weight: 500;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  button[mat-raised-button] {
+    min-width: 100px;
+  }
+  
